@@ -1,0 +1,130 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 0,
+    "failures": 1,
+    "start": "2022-08-05T13:45:36.041Z",
+    "end": "2022-08-05T13:45:57.390Z",
+    "duration": 21349,
+    "testsRegistered": 2,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "4e4c6657-2e9d-4741-8661-2ee2d3e1a5db",
+      "title": "",
+      "fullFile": "cypress/integration/09.EditExpense_spec.js",
+      "file": "cypress/integration/09.EditExpense_spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "598a80fc-8e89-49cd-97bd-89f0304a058c",
+          "title": "9 - Crie um botão para editar uma despesa da tabela contendo as seguintes características:",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "O botão deve estar dentro do último item da linha da tabela e deve possuir `data-testid=\"edit-btn\"`",
+              "fullTitle": "9 - Crie um botão para editar uma despesa da tabela contendo as seguintes características: O botão deve estar dentro do último item da linha da tabela e deve possuir `data-testid=\"edit-btn\"`",
+              "timedOut": null,
+              "duration": 4313,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('tbody tr').first().find('td').last().find(`button[data-testid=\"${_constants.BTN_EDIT_TEST_ID}\"]`).should('exist');\ncy.getByTestId(_constants.BTN_EDIT_TEST_ID).should('have.length', 2);",
+              "err": {},
+              "uuid": "d32eeb7d-7f0c-402d-a45b-2b774bfc7d41",
+              "parentUUID": "598a80fc-8e89-49cd-97bd-89f0304a058c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "O botão habilita um formulário para editar a linha da tabela ao ser clicado, após clicar em \"Editar despesa\" a despesa é atualizada e atualiza a soma de despesas no header.",
+              "fullTitle": "9 - Crie um botão para editar uma despesa da tabela contendo as seguintes características: O botão habilita um formulário para editar a linha da tabela ao ser clicado, após clicar em \"Editar despesa\" a despesa é atualizada e atualiza a soma de despesas no header.",
+              "timedOut": null,
+              "duration": 14779,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.getByTestId(_constants.BTN_EDIT_TEST_ID).first().click();\ncy.contains(/Adicionar despesa/i).should('not.exist');\ncy.contains(/Editar despesa/i).should('exist');\n(0, _helperFunctions.editExpense)({\n  value: '200',\n  currency: 'CAD',\n  method: 'Dinheiro',\n  tag: 'Saúde',\n  description: 'Duzentos dólares canadenses'\n});\nconst expectedTableRow = ['Duzentos dólares canadenses', 'Saúde', 'Dinheiro', '200.00', 'Dólar Canadense/Real Brasileiro', '3.76', '751.18', 'Real'];\nconst deleteBtn = 1;\ncy.get('tbody tr').first().find('td').should('have.length', expectedTableRow.length + deleteBtn);\ncy.wrap(expectedTableRow).each(expectedValue => {\n  cy.get('tbody tr').first().find('td').contains(expectedValue);\n});\ncy.getByTestId(_constants.TOTAL_FIELD_TEST_ID).should('have.text', '776.81');\nconst expectedExpenses = [{\n  id: 0,\n  value: '200',\n  currency: 'CAD',\n  method: 'Dinheiro',\n  tag: 'Saúde',\n  description: 'Duzentos dólares canadenses',\n  exchangeRates: _data.mockData\n}, _objectSpread(_objectSpread({}, _constants.initialExpenses[1]), {}, {\n  id: 1,\n  exchangeRates: _data.mockData\n})];\ncy.window().its('store').invoke('getState').its('wallet.expenses').should('deep.equal', expectedExpenses);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 10000ms: expected [ Array(2) ] to deeply equal [ Array(2) ]",
+                "estack": "AssertionError: Timed out retrying after 10000ms: expected [ Array(2) ] to deeply equal [ Array(2) ]\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/09.EditExpense_spec.js:205:72)",
+                "diff": "- [ { id: 1,\n+ [ { id: 0,\n     value: '200',\n-     description: 'Duzentos dólares canadenses',\n     currency: 'CAD',\n     method: 'Dinheiro',\n     tag: 'Saúde',\n+     description: 'Duzentos dólares canadenses',\n     exchangeRates: \n      { USD: [Object],\n        USDT: [Object],\n        CAD: [Object],\n        ILS: [Object],\n        ETH: [Object],\n        XRP: [Object],\n        DOGE: [Object] } },\n-   { id: 2,\n+   { description: 'Cinco euros',\n     value: '5',\n-     description: 'Cinco euros',\n     currency: 'EUR',\n     method: 'Cartão de crédito',\n     tag: 'Lazer',\n+     id: 1,\n     exchangeRates: \n      { USD: [Object],\n        USDT: [Object],\n        CAD: [Object],\n"
+              },
+              "uuid": "87270b70-0b22-4482-a4cb-f13232f2a674",
+              "parentUUID": "598a80fc-8e89-49cd-97bd-89f0304a058c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d32eeb7d-7f0c-402d-a45b-2b774bfc7d41"
+          ],
+          "failures": [
+            "87270b70-0b22-4482-a4cb-f13232f2a674"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 19092,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
