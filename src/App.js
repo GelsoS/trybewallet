@@ -6,7 +6,7 @@ import Wallet from './pages/Wallet';
 function App() {
   return (
     <Switch>
-      <Route exact path="/trybewallet" component={ Login } />
+      <Route exact path="https://gelsos.github.io/trybewallet/" component={ Login } />
       <Route path="/carteira" component={ Wallet } />
     </Switch>
   );
