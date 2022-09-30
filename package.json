@@ -1,7 +1,7 @@
 {
   "name": "sd-0x-project-trybewallet",
   "version": "0.1.0",
-  "homepage": "https://gelsos.github.io/trybewallet/",
+  "homepage": "https://gelsos.github.io/trybewallet/login",
   "private": true,
   "engines": {
     "node": "16"
